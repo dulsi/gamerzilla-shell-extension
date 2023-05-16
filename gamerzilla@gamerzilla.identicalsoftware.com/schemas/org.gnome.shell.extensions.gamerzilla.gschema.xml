@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.gamerzilla" path="/org/gnome/shell/extensions/gamerzilla/">
+    <!-- See also: https://docs.gtk.org/glib/gvariant-format-strings.html -->
+    <key name="gamerzilla-url" type="s">
+      <default>""</default>
+    </key>
+    <key name="username" type="s">
+      <default>""</default>
+    </key>
+    <key name="password" type="s">
+      <default>""</default>
+    </key>
+  </schema>
+</schemalist>

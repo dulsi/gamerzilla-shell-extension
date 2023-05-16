@@ -1,0 +1,8 @@
+{
+  "name": "Game Achievements",
+  "description": "Records achievements in games locally and online",
+  "uuid": "gamerzilla@gamerzilla.identicalsoftware.com",
+  "shell-version": [
+    "44"
+  ]
+}
