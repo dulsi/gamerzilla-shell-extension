@@ -27,7 +27,6 @@ function fillPreferencesWindow(window) {
     buf.set_text(settings.get_string("gamerzilla-url"), -1);
     const urlentry = new Gtk.Entry({
         buffer: buf
-//        valign: Gtk.Align.CENTER,
     });
 /*    settings.bind(
         'show-indicator',
@@ -45,7 +44,6 @@ function fillPreferencesWindow(window) {
     buf2.set_text(settings.get_string("username"), -1);
     const usernameentry = new Gtk.Entry({
         buffer: buf2
-//        valign: Gtk.Align.CENTER,
     });
 
     row2.add_suffix(usernameentry);
@@ -56,7 +54,6 @@ function fillPreferencesWindow(window) {
     buf3.set_text(settings.get_string("password"), -1);
     const passwordentry = new Gtk.Entry({
         buffer: buf3
-//        valign: Gtk.Align.CENTER,
     });
 
     row3.add_suffix(passwordentry);
@@ -64,7 +61,7 @@ function fillPreferencesWindow(window) {
     const row4 = new Adw.ActionRow({ title: '' });
     group.add(row4);
     const button = new Gtk.Button({
-        label: 'Connect'
+        label: 'Save'
     });
     button.connect('clicked', () => {
         settings.set_string("gamerzilla-url", buf.text);
@@ -72,6 +69,24 @@ function fillPreferencesWindow(window) {
         settings.set_string("password", buf3.text);
     });
     row4.add_suffix(button);
+
+    const row5 = new Adw.ActionRow({ title: 'Automatic Connect' });
+    group.add(row5);
+
+    // Create the switch and bind its value to the `show-indicator` key
+    const toggle = new Gtk.Switch({
+        active: settings.get_boolean ('auto-connect'),
+        valign: Gtk.Align.CENTER,
+    });
+    settings.bind(
+        'auto-connect',
+        toggle,
+        'active',
+        Gio.SettingsBindFlags.DEFAULT
+    );
+    // Add the switch to the row
+    row5.add_suffix(toggle);
+    row5.activatable_widget = toggle;
 
     // Add our page to the window
     window.add(page);

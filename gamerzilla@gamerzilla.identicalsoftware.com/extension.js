@@ -40,12 +40,28 @@ class Indicator extends PanelMenu.Button {
             icon_name: 'input-gaming-symbolic',
             style_class: 'system-status-icon',
         }));
+        this.settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.gamerzilla');
+        this.gamerzilla = new Gamerzilla.GamerzillaGobj({ url: this.settings.get_string("gamerzilla-url"), username: this.settings.get_string("username"), password: this.settings.get_string("password") });
+        this.gamerzilla.serverstart();
+        if ((this.settings.get_string("gamerzilla-url") != "") && (this.settings.get_boolean("auto-connect")))
+            this.gamerzilla.connect();
 
-        let item = new PopupMenu.PopupMenuItem(_('Preferences'));
+        let item = new PopupMenu.PopupMenuItem(_('Connect'));
+        item.connect('activate', () => {
+            let ext = imports.misc.extensionUtils.getCurrentExtension();
+            this.gamerzilla.connect();
+        });
+        this.menu.addMenuItem(item);
+        item = new PopupMenu.PopupMenuItem(_('Preferences'));
         item.connect('activate', () => {
             ExtensionUtils.openPrefs();
         });
         this.menu.addMenuItem(item);
+    }
+
+    _onDestroy() {
+        this.gamerzilla.serverstop();
+        super._onDestroy();
     }
 });
 
@@ -57,15 +73,11 @@ class Extension {
     }
 
     enable() {
-        this.settings = ExtensionUtils.getSettings('org.gnome.shell.extensions.gamerzilla');
         this._indicator = new Indicator();
         Main.panel.addToStatusArea(this._uuid, this._indicator);
-        this.gamerzilla = new Gamerzilla.GamerzillaGobj({ url: this.settings.get_string("gamerzilla-url"), username: this.settings.get_string("username"), password: this.settings.get_string("password") });
-        this.gamerzilla.serverstart(1);
     }
 
     disable() {
-        this.gamerzilla.serverstop();
         this._indicator.destroy();
         this._indicator = null;
     }
