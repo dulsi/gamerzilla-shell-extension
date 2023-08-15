@@ -5,7 +5,7 @@ Name:           gnome-shell-extension-gamerzilla
 Version:        0.1.0
 Release:        %autorelease
 Summary:        A gnome-shell extension to connect to gamerzilla
-License:        GPLv2+
+License:        GPL-2.0-or-later
 URL:            https://github.com/dulsi/gamerzilla-shell-extension
 Source0:        http://www.identicalsoftware.com/gamerzilla/gamerzilla-shell-extension-%{version}.tgz
 
