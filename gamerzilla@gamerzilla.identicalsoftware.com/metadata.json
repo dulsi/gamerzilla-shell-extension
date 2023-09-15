@@ -3,6 +3,8 @@
   "description": "Records achievements in games locally and online",
   "uuid": "gamerzilla@gamerzilla.identicalsoftware.com",
   "shell-version": [
-    "44"
-  ]
+    "45"
+  ],
+  "gettext-domain": "game-achievements-extension",
+  "settings-schema": "org.gnome.shell.extensions.gamerzilla"
 }
