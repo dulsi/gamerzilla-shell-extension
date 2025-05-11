@@ -2,7 +2,7 @@
 %global min_gs_version 3.20
 
 Name:           gnome-shell-extension-gamerzilla
-Version:        0.1.2
+Version:        0.1.3
 Release:        %autorelease
 Summary:        A gnome-shell extension to connect to gamerzilla
 License:        GPL-2.0-or-later
